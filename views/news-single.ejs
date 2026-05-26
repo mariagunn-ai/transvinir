@@ -1,0 +1,19 @@
+<article class="content-page">
+  <p><a href="/nylegt">&larr; <%= t('news.back') %></a></p>
+  <h1><%= item.title %></h1>
+  <p class="news-list__date"><%= new Date(item.published_at).toLocaleDateString(lang === 'en' ? 'en-GB' : 'is-IS') %></p>
+  <% if (item.translation_missing) { %>
+    <p class="translation-notice"><%= t('news.translation_missing') %></p>
+  <% } %>
+  <% if (item.cover_image) { %>
+    <img src="<%= item.cover_image %>" alt="" class="news-cover" />
+  <% } %>
+  <div class="content-page__body">
+    <%- item.body_html %>
+  </div>
+  <% if (user) { %>
+    <p class="content-page__edit">
+      <a href="/admin/news/<%= item.id %>/edit" class="button button--small"><%= t('page.edit') %></a>
+    </p>
+  <% } %>
+</article>

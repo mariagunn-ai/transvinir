@@ -1,0 +1,8 @@
+<article class="content-page">
+  <h1><%= t('error.500.title') %></h1>
+  <p><%= t('error.500.text') %></p>
+  <% if (message) { %>
+    <pre><%= message %></pre>
+  <% } %>
+  <p><a href="/">&larr; <%= t('error.back_home') %></a></p>
+</article>

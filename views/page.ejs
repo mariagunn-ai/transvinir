@@ -1,0 +1,14 @@
+<article class="content-page">
+  <h1><%= page.title %></h1>
+  <% if (page.translation_missing) { %>
+    <p class="translation-notice"><%= t('page.translation_missing') %></p>
+  <% } %>
+  <div class="content-page__body">
+    <%- page.body_html %>
+  </div>
+  <% if (user) { %>
+    <p class="content-page__edit">
+      <a href="/admin/pages/<%= page.slug %>/edit" class="button button--small"><%= t('page.edit') %></a>
+    </p>
+  <% } %>
+</article>

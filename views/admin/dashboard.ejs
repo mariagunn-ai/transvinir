@@ -1,0 +1,58 @@
+<div class="admin">
+  <header class="admin__header">
+    <h1>Stjórnborð</h1>
+    <p><a href="/admin/password">Breyta lykilorði</a></p>
+  </header>
+
+  <section class="admin__section">
+    <div class="admin__section-head">
+      <h2>Fréttir (<%= newsCount %>)</h2>
+      <a href="/admin/news/new" class="button">+ Ný frétt</a>
+    </div>
+    <% if (recentNews.length === 0) { %>
+      <p>Engar fréttir.</p>
+    <% } else { %>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Titill</th><th>Dagsetning</th><th>Birt</th><th></th></tr>
+        </thead>
+        <tbody>
+          <% recentNews.forEach(n => { %>
+            <tr>
+              <td><a href="/nylegt/<%= n.slug %>"><%= n.title %></a></td>
+              <td><%= new Date(n.published_at).toLocaleDateString('is-IS') %></td>
+              <td><%= n.published ? 'Já' : 'Nei' %></td>
+              <td class="admin-table__actions">
+                <a href="/admin/news/<%= n.id %>/edit">Breyta</a>
+                <form method="post" action="/admin/news/<%= n.id %>/delete" onsubmit="return confirm('Eyða þessari frétt?')">
+                  <button type="submit" class="link-button danger">Eyða</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </section>
+
+  <section class="admin__section">
+    <h2>Síður (<%= pagesCount %>)</h2>
+    <p class="muted">Þessar síður eru fastar – þú getur breytt texta þeirra en ekki útliti né valmynd.</p>
+    <table class="admin-table">
+      <thead>
+        <tr><th>Titill</th><th>Síðast uppfært</th><th></th></tr>
+      </thead>
+      <tbody>
+        <% pages.forEach(p => { %>
+          <tr>
+            <td><a href="/<%= p.slug %>"><%= p.title %></a></td>
+            <td><%= new Date(p.updated_at).toLocaleDateString('is-IS') %></td>
+            <td class="admin-table__actions">
+              <a href="/admin/pages/<%= p.slug %>/edit">Breyta</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+</div>

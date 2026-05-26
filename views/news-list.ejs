@@ -1,0 +1,23 @@
+<article class="content-page">
+  <h1><%= t('news.title') %></h1>
+  <% if (news.length === 0) { %>
+    <p><%= t('news.empty') %></p>
+  <% } else { %>
+    <ul class="news-list">
+      <% news.forEach(n => { %>
+        <li class="news-list__item">
+          <% if (n.cover_image) { %>
+            <a href="/nylegt/<%= n.slug %>" class="news-list__cover">
+              <img src="<%= n.cover_image %>" alt="" />
+            </a>
+          <% } %>
+          <div class="news-list__body">
+            <h2><a href="/nylegt/<%= n.slug %>"><%= n.title %></a></h2>
+            <p class="news-list__date"><%= new Date(n.published_at).toLocaleDateString(lang === 'en' ? 'en-GB' : 'is-IS') %></p>
+            <% if (n.summary) { %><p><%= n.summary %></p><% } %>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</article>

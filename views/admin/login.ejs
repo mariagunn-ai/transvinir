@@ -1,0 +1,15 @@
+<div class="admin-auth">
+  <h1>Innskráning</h1>
+  <% if (error) { %><p class="error"><%= error %></p><% } %>
+  <form method="post" action="/admin/login" class="form">
+    <label>
+      Notandanafn
+      <input type="text" name="username" required autocomplete="username" autofocus />
+    </label>
+    <label>
+      Lykilorð
+      <input type="password" name="password" required autocomplete="current-password" />
+    </label>
+    <button type="submit" class="button">Skrá inn</button>
+  </form>
+</div>

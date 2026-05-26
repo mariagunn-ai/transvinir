@@ -1,0 +1,43 @@
+<div class="admin">
+  <h1>Breyta síðu: <%= page.title %></h1>
+  <p><a href="/admin">&larr; Aftur á stjórnborð</a></p>
+  <% if (error) { %><p class="error"><%= error %></p><% } %>
+
+  <form method="post" action="/admin/pages/<%= page.slug %>" class="form">
+
+    <div data-lang-tabs>
+      <div class="lang-tabs" role="tablist">
+        <button type="button" class="lang-tabs__tab is-active" data-target="is">Íslenska</button>
+        <button type="button" class="lang-tabs__tab" data-target="en">English</button>
+      </div>
+
+      <div class="lang-pane is-active" data-pane="is">
+        <label>
+          Titill (íslenska)
+          <input type="text" name="title" required value="<%= page.title %>" />
+        </label>
+        <label>
+          Texti (Markdown)
+          <textarea name="body_md" rows="20" required><%= page.body_md %></textarea>
+        </label>
+      </div>
+
+      <div class="lang-pane" data-pane="en">
+        <p class="muted">Skildu eftir auð til að nota íslensku útgáfuna sem fallback.</p>
+        <label>
+          Title (English)
+          <input type="text" name="title_en" value="<%= page.title_en || '' %>" />
+        </label>
+        <label>
+          Body (Markdown)
+          <textarea name="body_md_en" rows="20"><%= page.body_md_en || '' %></textarea>
+        </label>
+      </div>
+    </div>
+
+    <div class="form__actions">
+      <button type="submit" class="button">Vista breytingar</button>
+      <a href="/<%= page.slug %>" class="button button--ghost">Skoða síðuna</a>
+    </div>
+  </form>
+</div>

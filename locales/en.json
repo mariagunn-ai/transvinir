@@ -1,0 +1,47 @@
+{
+  "site.title": "Trans vinir",
+  "nav.markmid": "Our goals",
+  "nav.samthykktir": "Bylaws",
+  "nav.nylegt": "News",
+  "nav.rannsoknir": "Research",
+  "nav.baekur": "Books",
+  "nav.spurt_svarad": "FAQ",
+  "nav.linkar": "Links",
+  "nav.hafa_samband": "Contact",
+  "nav.admin": "Admin",
+  "nav.open_menu": "Open menu",
+
+  "home.tile.adstandendur.title": "Family & friends",
+  "home.tile.adstandendur.text": "You are not alone. A space for family and friends of trans people.",
+  "home.tile.shop.label": "Online store",
+  "home.tile.recent.title": "Latest news",
+  "home.tile.recent.empty": "No news yet.",
+  "home.tile.recent.see_all": "See all",
+  "home.tile.polaroids.caption": "Photos",
+  "home.tile.faq.title": "FAQ",
+  "home.tile.faq.text": "Frequently asked questions and answers.",
+  "home.tile.goals.title": "Our goals",
+  "home.tile.goals.text": "Trans vinir is a group of family members and friends of trans people in Iceland. Our goal is to support, educate and stand alongside.",
+  "home.tile.goals.more": "Read more",
+
+  "news.title": "News",
+  "news.back": "All news",
+  "news.empty": "No news yet.",
+  "news.translation_missing": "This article has not been translated. Showing the Icelandic version.",
+
+  "page.translation_missing": "This page has not been translated. Showing the Icelandic version.",
+  "page.edit": "Edit this page",
+
+  "footer.postfang": "Email",
+  "footer.admin_login": "Admin",
+  "footer.logout": "Log out",
+
+  "lang.switch_to": "IS",
+  "lang.switch_label": "Switch to Icelandic",
+
+  "error.404.title": "Page not found",
+  "error.404.text": "The page you tried to open does not exist.",
+  "error.500.title": "Something went wrong",
+  "error.500.text": "Please try again in a moment.",
+  "error.back_home": "Back to home"
+}

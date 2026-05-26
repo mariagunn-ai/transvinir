@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> – <%= t('site.title') %></title>
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="<%= typeof isAdminLayout !== 'undefined' && isAdminLayout ? 'is-admin' : '' %>">
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="site-header__brand">
+        <img src="/images/logo.png" alt="<%= t('site.title') %>" class="site-header__logo" />
+      </a>
+      <div class="site-header__right">
+        <% if (typeof isAdminLayout === 'undefined' || !isAdminLayout) { %>
+          <a href="?lang=<%= otherLang %>"
+             class="lang-toggle"
+             aria-label="<%= t('lang.switch_label') %>"
+             title="<%= t('lang.switch_label') %>"><%= t('lang.switch_to') %></a>
+        <% } %>
+        <button class="menu-toggle" id="menuToggle" aria-label="<%= t('nav.open_menu') %>" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="site-nav" id="siteNav">
+      <a href="/markmid" class="<%= currentPath === '/markmid' ? 'is-active' : '' %>"><%= t('nav.markmid') %></a>
+      <a href="/samthykktir" class="<%= currentPath === '/samthykktir' ? 'is-active' : '' %>"><%= t('nav.samthykktir') %></a>
+      <a href="/nylegt" class="<%= currentPath.startsWith('/nylegt') ? 'is-active' : '' %>"><%= t('nav.nylegt') %></a>
+      <a href="/rannsoknir" class="<%= currentPath === '/rannsoknir' ? 'is-active' : '' %>"><%= t('nav.rannsoknir') %></a>
+      <a href="/baekur" class="<%= currentPath === '/baekur' ? 'is-active' : '' %>"><%= t('nav.baekur') %></a>
+      <a href="/spurt-svarad" class="<%= currentPath === '/spurt-svarad' ? 'is-active' : '' %>"><%= t('nav.spurt_svarad') %></a>
+      <a href="/linkar" class="<%= currentPath === '/linkar' ? 'is-active' : '' %>"><%= t('nav.linkar') %></a>
+      <a href="/hafa-samband" class="<%= currentPath === '/hafa-samband' ? 'is-active' : '' %>"><%= t('nav.hafa_samband') %></a>
+      <% if (user) { %>
+        <a href="/admin" class="site-nav__admin"><%= t('nav.admin') %></a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <%- include(bodyTemplate, bodyData) %>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__contact">
+        <%
+          let contactEmail = 'transvinir@transvinir.is';
+          if (bodyData && bodyData.settings && bodyData.settings.contact_email) {
+            contactEmail = bodyData.settings.contact_email;
+          }
+        %>
+        <%= t('footer.postfang') %>: <a href="mailto:<%= contactEmail %>"><%= contactEmail %></a>
+      </p>
+      <p class="site-footer__meta">
+        &copy; <%= new Date().getFullYear() %> <%= t('site.title') %>.
+        <% if (!user) { %>
+          <a href="/admin/login" class="site-footer__admin-link"><%= t('footer.admin_login') %></a>
+        <% } else { %>
+          <form action="/admin/logout" method="post" style="display:inline">
+            <button type="submit" class="link-button"><%= t('footer.logout') %> <%= user.username %></button>
+          </form>
+        <% } %>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "site.title": "Trans vinir",
+  "nav.markmid": "Markmið",
+  "nav.samthykktir": "Samþykktir",
+  "nav.nylegt": "Nýlegt",
+  "nav.rannsoknir": "Rannsóknir",
+  "nav.baekur": "Bækur",
+  "nav.spurt_svarad": "Spurt & Svarað",
+  "nav.linkar": "Linkar",
+  "nav.hafa_samband": "Hafa samband",
+  "nav.admin": "Stjórnborð",
+  "nav.open_menu": "Opna matseðil",
+
+  "home.tile.adstandendur.title": "Aðstandendur",
+  "home.tile.adstandendur.text": "Þú ert ekki ein/n. Hér er pláss fyrir aðstandendur og vini trans fólks.",
+  "home.tile.shop.label": "Vefverslun",
+  "home.tile.recent.title": "Nýlegt",
+  "home.tile.recent.empty": "Engar fréttir enn sem komið er.",
+  "home.tile.recent.see_all": "Sjá allt",
+  "home.tile.polaroids.caption": "Fléttimyndir",
+  "home.tile.faq.title": "Spurt & Svarað",
+  "home.tile.faq.text": "Algengar spurningar og svör.",
+  "home.tile.goals.title": "Markmið Trans vina",
+  "home.tile.goals.text": "Trans vinir eru hópur aðstandenda og vina trans fólks á Íslandi. Markmið okkar er að styðja, fræða og standa með.",
+  "home.tile.goals.more": "Lesa meira",
+
+  "news.title": "Nýlegt",
+  "news.back": "Allar fréttir",
+  "news.empty": "Engar fréttir enn.",
+  "news.translation_missing": "Þessi frétt hefur ekki verið þýdd. Sýni íslensku útgáfu.",
+
+  "page.translation_missing": "Þessi síða hefur ekki verið þýdd. Sýni íslensku útgáfu.",
+  "page.edit": "Breyta þessari síðu",
+
+  "footer.postfang": "Póstfang",
+  "footer.admin_login": "Admin",
+  "footer.logout": "Útskrá",
+
+  "lang.switch_to": "EN",
+  "lang.switch_label": "Skipta yfir á ensku",
+
+  "error.404.title": "Síða fannst ekki",
+  "error.404.text": "Síðan sem þú reyndir að opna er ekki til.",
+  "error.500.title": "Eitthvað fór úrskeiðis",
+  "error.500.text": "Reyndu aftur eftir augnablik.",
+  "error.back_home": "Aftur á forsíðu"
+}
