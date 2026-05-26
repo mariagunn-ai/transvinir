@@ -32,6 +32,13 @@ Listed in the README's "later" section. Today the page is just a `mailto:` link;
 ### 8. SEO + social sharing meta
 No OpenGraph, Twitter card, sitemap, or per-page description meta tags. When someone shares a news article on Facebook or Bluesky it'll look bare. Also in the README's "later" list.
 
+## Webshop / vefverslun
+
+### 14. Vefverslun með rotation á forsíðuflís
+Build out the shop experience. Today the second home tile (`tile--circle` in `views/home.ejs`) is a single circular CTA pointing at `settings.redbubble_url` with one slogan ("Þú átt skjól hjá mér"). Plan is to surface a real product set there and **rotate the featured product on that tile** — either per page-load or on a schedule — so the homepage shows different items over time. Open questions: full self-hosted shop or stay on Redbubble (and just curate / rotate which products we highlight)? Does the rotation drive a single product per tile load, or a small carousel within the tile? Where do orders / fulfilment live?
+
+- **TODO: download product images** from the current sales channel (Redbubble) so we have a local set to point the rotation at, instead of hot-linking. Need to decide whether to commit them to git or treat them like admin uploads.
+
 ## Security & ops
 
 ### 9. Persistent session store
