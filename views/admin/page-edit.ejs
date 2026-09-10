@@ -3,6 +3,16 @@
   <p><a href="/admin">&larr; Aftur á stjórnborð</a></p>
   <% if (error) { %><p class="error"><%= error %></p><% } %>
 
+  <details class="file-helper">
+    <summary>Hlaða upp skrá (PDF eða mynd) til að tengja á</summary>
+    <p class="muted">Veldu skrá &rarr; slóð birtist &rarr; smelltu á tengla-takkann í ritlinum og límdu slóðina þar.</p>
+    <div class="file-helper__row">
+      <input type="file" data-file-helper-input accept=".pdf,image/*" />
+      <input type="text" data-file-helper-url readonly placeholder="Slóð birtist hér eftir upphleðslu" />
+    </div>
+    <p class="file-helper__status muted" data-file-helper-status></p>
+  </details>
+
   <form method="post" action="/admin/pages/<%= page.slug %>" class="form">
 
     <div data-lang-tabs>
@@ -18,7 +28,7 @@
         </label>
         <label>
           Texti (Markdown)
-          <textarea name="body_md" rows="20" required><%= page.body_md %></textarea>
+          <textarea name="body_md" rows="20" data-markdown-editor><%= page.body_md %></textarea>
         </label>
       </div>
 
@@ -30,7 +40,7 @@
         </label>
         <label>
           Body (Markdown)
-          <textarea name="body_md_en" rows="20"><%= page.body_md_en || '' %></textarea>
+          <textarea name="body_md_en" rows="20" data-markdown-editor><%= page.body_md_en || '' %></textarea>
         </label>
       </div>
     </div>

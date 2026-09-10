@@ -1,37 +1,37 @@
-<section class="hero">
-  <div class="hero__inner">
-    <h1 class="hero__title"><%= t('site.title') %></h1>
-    <p class="hero__lead"><%= settings.hero_text %></p>
-  </div>
+<section class="home-intro">
+  <p><%= t('home.intro.line1') %><br><%= t('home.intro.line2') %></p>
 </section>
 
 <section class="grid-2x3">
 
   <article class="tile tile--photo">
-    <a href="/markmid" class="tile__link">
+    <a href="/fyrstu-skref" class="tile__link">
       <div class="tile__media">
         <img src="/images/adstandendur.jpg" alt="<%= t('home.tile.adstandendur.title') %>" />
       </div>
       <div class="tile__body">
         <h2><%= t('home.tile.adstandendur.title') %></h2>
-        <p><%= t('home.tile.adstandendur.text') %></p>
+        <% if (t('home.tile.adstandendur.text')) { %>
+          <p><%= t('home.tile.adstandendur.text') %></p>
+        <% } %>
       </div>
     </a>
   </article>
 
-  <article class="tile tile--circle">
-    <a href="<%= settings.redbubble_url || '#' %>" target="_blank" rel="noopener" class="tile__link">
-      <div class="circle-cta">
-        <span class="circle-cta__text"><%= settings.campaign_text %></span>
+  <article class="tile tile--goals">
+    <a href="/markmid" class="tile__link">
+      <div class="tile__media">
+        <img src="/images/nylegt.jpg" alt="<%= t('home.tile.goals.title') %>" />
       </div>
-      <p class="tile__caption"><%= t('home.tile.shop.label') %> &rarr;</p>
+      <div class="tile__body">
+        <h2><%= t('home.tile.goals.title') %></h2>
+        <p><%= t('home.tile.goals.text') %></p>
+        <span class="tile__more"><%= t('home.tile.goals.more') %> &rarr;</span>
+      </div>
     </a>
   </article>
 
   <article class="tile tile--news">
-    <div class="tile__media">
-      <img src="/images/nylegt.jpg" alt="<%= t('home.tile.recent.title') %>" />
-    </div>
     <div class="tile__body">
       <h2><%= t('home.tile.recent.title') %></h2>
       <% if (news.length === 0) { %>
@@ -41,8 +41,13 @@
           <% news.forEach(n => { %>
             <li>
               <a href="/nylegt/<%= n.slug %>">
-                <strong><%= n.title %></strong>
-                <% if (n.summary) { %><span><%= n.summary %></span><% } %>
+                <% if (n.cover_image) { %>
+                  <img src="<%= n.cover_image %>" alt="" class="news-mini__thumb" />
+                <% } %>
+                <div class="news-mini__text">
+                  <strong><%= n.title %></strong>
+                  <% if (n.summary) { %><span><%= n.summary %></span><% } %>
+                </div>
               </a>
             </li>
           <% }) %>
@@ -53,10 +58,23 @@
   </article>
 
   <article class="tile tile--polaroids">
-    <div class="polaroid-stack">
-      <img src="/images/flettimyndir.jpg" alt="<%= t('home.tile.polaroids.caption') %>" class="polaroid-stack__img" />
+    <div class="polaroid-stack <%= polaroids && polaroids.length > 1 ? 'polaroid-stack--slideshow' : '' %>"
+         <% if (polaroids && polaroids.length > 1) { %>data-polaroid-slideshow data-interval="10000"<% } %>>
+      <% if (polaroids && polaroids.length > 0) { %>
+        <% polaroids.forEach((p, i) => { %>
+          <div class="polaroid-slide <%= i === 0 ? 'is-active' : '' %>"
+               style="--slide-bg: url('<%= p.image_url %>')">
+            <img src="<%= p.image_url %>"
+                 alt="<%= p.alt_text || t('home.tile.polaroids.caption') %>"
+                 class="polaroid-slide__img" />
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="polaroid-slide is-active" style="--slide-bg: url('/images/flettimyndir.jpg')">
+          <img src="/images/flettimyndir.jpg" alt="<%= t('home.tile.polaroids.caption') %>" class="polaroid-slide__img" />
+        </div>
+      <% } %>
     </div>
-    <p class="tile__caption"><%= t('home.tile.polaroids.caption') %></p>
   </article>
 
   <article class="tile tile--faq">
@@ -71,12 +89,28 @@
     </a>
   </article>
 
-  <article class="tile tile--goals">
-    <a href="/markmid" class="tile__link">
-      <h2><%= t('home.tile.goals.title') %></h2>
-      <p><%= t('home.tile.goals.text') %></p>
-      <span class="tile__more"><%= t('home.tile.goals.more') %> &rarr;</span>
+  <article class="tile tile--circle">
+    <a href="/vefverslun" class="tile__link">
+      <div class="tile__media tile__media--logo">
+        <% if (shopCoverImage) { %>
+          <img src="<%= shopCoverImage %>" alt="<%= settings.campaign_text || t('home.tile.shop.label') %>" />
+        <% } else { %>
+          <div class="circle-cta">
+            <span class="circle-cta__text"><%= settings.campaign_text %></span>
+          </div>
+        <% } %>
+      </div>
+      <div class="tile__body">
+        <h2><%= t('home.tile.shop.label') %></h2>
+        <p><%= t('home.tile.shop.text') %></p>
+      </div>
     </a>
   </article>
 
+</section>
+
+<section class="home-cta">
+  <h2 class="home-cta__title"><%= t('home.cta.title') %></h2>
+  <p class="home-cta__text"><%= t('home.cta.text') %></p>
+  <a href="/hafa-samband" class="home-cta__button"><%= t('home.cta.button') %> &rarr;</a>
 </section>

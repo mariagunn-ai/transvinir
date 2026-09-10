@@ -1,0 +1,63 @@
+<div class="admin">
+  <h1>Fléttimyndir</h1>
+  <p><a href="/admin">&larr; Aftur á stjórnborð</a></p>
+  <p class="muted">Myndirnar birtast í fléttimynda-boxinu á forsíðunni. Hægt er að raða þeim með ör-tökkunum.</p>
+  <% if (error) { %><p class="error"><%= error %></p><% } %>
+
+  <section class="admin__section">
+    <h2>Bæta við mynd</h2>
+    <form method="post" action="/admin/polaroids" enctype="multipart/form-data" class="form">
+      <label>
+        Hlaða upp mynd
+        <input type="file" name="image_file" accept="image/*" />
+      </label>
+      <label>
+        ... eða slóð á mynd
+        <input type="text" name="image_url" placeholder="https://..." />
+      </label>
+      <label>
+        Lýsing (valfrjálst — fyrir aðgengi)
+        <input type="text" name="alt_text" placeholder="t.d. Hópmynd af fundi" />
+      </label>
+      <div class="form__actions">
+        <button type="submit" class="button">Bæta við</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="admin__section">
+    <h2>Myndir í boxinu (<%= polaroids.length %>)</h2>
+    <% if (polaroids.length === 0) { %>
+      <p>Engar myndir enn. Boxið á forsíðu sýnir sjálfgefna mynd á meðan.</p>
+    <% } else { %>
+      <ul class="polaroid-admin-list">
+        <% polaroids.forEach((p, i) => { %>
+          <li class="polaroid-admin-item">
+            <img src="<%= p.image_url %>" alt="<%= p.alt_text || '' %>" />
+            <div class="polaroid-admin-item__meta">
+              <p><%= p.alt_text || '(engin lýsing)' %></p>
+              <div class="polaroid-admin-item__actions">
+                <% if (i > 0) { %>
+                  <form method="post" action="/admin/polaroids/<%= p.id %>/move" style="display:inline">
+                    <input type="hidden" name="direction" value="up" />
+                    <button type="submit" class="link-button" title="Færa upp">&uarr;</button>
+                  </form>
+                <% } %>
+                <% if (i < polaroids.length - 1) { %>
+                  <form method="post" action="/admin/polaroids/<%= p.id %>/move" style="display:inline">
+                    <input type="hidden" name="direction" value="down" />
+                    <button type="submit" class="link-button" title="Færa niður">&darr;</button>
+                  </form>
+                <% } %>
+                <form method="post" action="/admin/polaroids/<%= p.id %>/delete" style="display:inline"
+                      onsubmit="return confirm('Eyða þessari mynd?')">
+                  <button type="submit" class="link-button danger">Eyða</button>
+                </form>
+              </div>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </section>
+</div>

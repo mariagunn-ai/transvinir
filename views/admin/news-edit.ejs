@@ -25,7 +25,7 @@
         </label>
         <label>
           Texti (Markdown)
-          <textarea name="body_md" rows="14" required><%= item ? item.body_md : '' %></textarea>
+          <textarea name="body_md" rows="14" data-markdown-editor><%= item ? item.body_md : '' %></textarea>
         </label>
       </div>
 
@@ -41,7 +41,7 @@
         </label>
         <label>
           Body (Markdown)
-          <textarea name="body_md_en" rows="14"><%= item && item.body_md_en ? item.body_md_en : '' %></textarea>
+          <textarea name="body_md_en" rows="14" data-markdown-editor><%= item && item.body_md_en ? item.body_md_en : '' %></textarea>
         </label>
       </div>
     </div>

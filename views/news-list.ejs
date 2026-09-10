@@ -13,7 +13,6 @@
           <% } %>
           <div class="news-list__body">
             <h2><a href="/nylegt/<%= n.slug %>"><%= n.title %></a></h2>
-            <p class="news-list__date"><%= new Date(n.published_at).toLocaleDateString(lang === 'en' ? 'en-GB' : 'is-IS') %></p>
             <% if (n.summary) { %><p><%= n.summary %></p><% } %>
           </div>
         </li>

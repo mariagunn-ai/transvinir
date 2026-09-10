@@ -1,7 +1,11 @@
 <div class="admin">
   <header class="admin__header">
     <h1>Stjórnborð</h1>
-    <p><a href="/admin/password">Breyta lykilorði</a></p>
+    <p>
+      <a href="/admin/polaroids">Fléttimyndir</a>
+      &nbsp;·&nbsp;
+      <a href="/admin/password">Breyta lykilorði</a>
+    </p>
   </header>
 
   <section class="admin__section">
@@ -14,11 +18,25 @@
     <% } else { %>
       <table class="admin-table">
         <thead>
-          <tr><th>Titill</th><th>Dagsetning</th><th>Birt</th><th></th></tr>
+          <tr><th>Röð</th><th>Titill</th><th>Dagsetning</th><th>Birt</th><th></th></tr>
         </thead>
         <tbody>
-          <% recentNews.forEach(n => { %>
+          <% recentNews.forEach((n, i) => { %>
             <tr>
+              <td class="admin-table__order">
+                <% if (i > 0) { %>
+                  <form method="post" action="/admin/news/<%= n.id %>/move" style="display:inline">
+                    <input type="hidden" name="direction" value="up" />
+                    <button type="submit" class="link-button" title="Færa upp">&uarr;</button>
+                  </form>
+                <% } %>
+                <% if (i < recentNews.length - 1) { %>
+                  <form method="post" action="/admin/news/<%= n.id %>/move" style="display:inline">
+                    <input type="hidden" name="direction" value="down" />
+                    <button type="submit" class="link-button" title="Færa niður">&darr;</button>
+                  </form>
+                <% } %>
+              </td>
               <td><a href="/nylegt/<%= n.slug %>"><%= n.title %></a></td>
               <td><%= new Date(n.published_at).toLocaleDateString('is-IS') %></td>
               <td><%= n.published ? 'Já' : 'Nei' %></td>

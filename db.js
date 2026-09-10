@@ -45,6 +45,14 @@ db.exec(`
     key TEXT PRIMARY KEY,
     value TEXT NOT NULL
   );
+
+  CREATE TABLE IF NOT EXISTS polaroids (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    image_url TEXT NOT NULL,
+    alt_text TEXT,
+    sort_order INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
 `);
 
 const columnExists = (table, column) => {
@@ -57,7 +65,17 @@ const addColumn = (table, column, type) => {
 addColumn('news', 'title_en', 'TEXT');
 addColumn('news', 'summary_en', 'TEXT');
 addColumn('news', 'body_md_en', 'TEXT');
+addColumn('news', 'sort_order', 'INTEGER NOT NULL DEFAULT 0');
 addColumn('pages', 'title_en', 'TEXT');
 addColumn('pages', 'body_md_en', 'TEXT');
+
+const totalNews = db.prepare('SELECT COUNT(*) AS c FROM news').get().c;
+const unsortedNews = db.prepare('SELECT COUNT(*) AS c FROM news WHERE sort_order = 0').get().c;
+if (totalNews > 0 && unsortedNews === totalNews) {
+  const rows = db.prepare('SELECT id FROM news ORDER BY published_at DESC').all();
+  const update = db.prepare('UPDATE news SET sort_order = ? WHERE id = ?');
+  let order = 1;
+  for (const r of rows) update.run(order++, r.id);
+}
 
 module.exports = db;

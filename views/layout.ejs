@@ -6,6 +6,9 @@
   <title><%= title %> – <%= t('site.title') %></title>
   <link rel="icon" type="image/png" href="/images/favicon.png" />
   <link rel="stylesheet" href="/css/style.css" />
+  <% if (typeof isAdminLayout !== 'undefined' && isAdminLayout) { %>
+    <link rel="stylesheet" href="/vendor/easymde/easymde.min.css" />
+  <% } %>
 </head>
 <body class="<%= typeof isAdminLayout !== 'undefined' && isAdminLayout ? 'is-admin' : '' %>">
 
@@ -13,6 +16,7 @@
     <div class="site-header__inner">
       <a href="/" class="site-header__brand">
         <img src="/images/logo.png" alt="<%= t('site.title') %>" class="site-header__logo" />
+        <span class="site-header__tagline"><%= t('site.tagline') %></span>
       </a>
       <div class="site-header__right">
         <% if (typeof isAdminLayout === 'undefined' || !isAdminLayout) { %>
@@ -28,6 +32,7 @@
     </div>
     <nav class="site-nav" id="siteNav">
       <a href="/markmid" class="<%= currentPath === '/markmid' ? 'is-active' : '' %>"><%= t('nav.markmid') %></a>
+      <a href="/fyrstu-skref" class="<%= currentPath === '/fyrstu-skref' ? 'is-active' : '' %>"><%= t('nav.fyrstu_skref') %></a>
       <a href="/samthykktir" class="<%= currentPath === '/samthykktir' ? 'is-active' : '' %>"><%= t('nav.samthykktir') %></a>
       <a href="/nylegt" class="<%= currentPath.startsWith('/nylegt') ? 'is-active' : '' %>"><%= t('nav.nylegt') %></a>
       <a href="/rannsoknir" class="<%= currentPath === '/rannsoknir' ? 'is-active' : '' %>"><%= t('nav.rannsoknir') %></a>
@@ -49,7 +54,7 @@
     <div class="site-footer__inner">
       <p class="site-footer__contact">
         <%
-          let contactEmail = 'transvinir@transvinir.is';
+          let contactEmail = 'transvinir@gmail.com';
           if (bodyData && bodyData.settings && bodyData.settings.contact_email) {
             contactEmail = bodyData.settings.contact_email;
           }
@@ -70,5 +75,9 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <% if (typeof isAdminLayout !== 'undefined' && isAdminLayout) { %>
+    <script src="/vendor/easymde/easymde.min.js"></script>
+    <script src="/js/admin-editor.js"></script>
+  <% } %>
 </body>
 </html>

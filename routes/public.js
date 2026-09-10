@@ -1,6 +1,14 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const { marked } = require('marked');
 const db = require('../db');
+
+const SHOP_COVER_PATH = '/images/skjol-hja-mer.png';
+function getShopCoverImage() {
+  const abs = path.join(__dirname, '..', 'public', SHOP_COVER_PATH);
+  return fs.existsSync(abs) ? SHOP_COVER_PATH : null;
+}
 
 const router = express.Router();
 
@@ -13,7 +21,7 @@ function getSettings(lang) {
     return all[base] || '';
   };
   return {
-    contact_email: all.contact_email || 'transvinir@transvinir.is',
+    contact_email: all.contact_email || 'transvinir@gmail.com',
     redbubble_url: all.redbubble_url || '',
     campaign_text: pick('campaign_text'),
     hero_text: pick('hero_text')
@@ -46,8 +54,8 @@ router.get('/', (req, res) => {
     SELECT slug, title, summary, title_en, summary_en, cover_image, published_at
     FROM news
     WHERE published = 1
-    ORDER BY published_at DESC
-    LIMIT 3
+    ORDER BY sort_order ASC, published_at DESC
+    LIMIT 4
   `).all();
   const lang = req.lang;
   const news = newsRows.map(n => ({
@@ -57,7 +65,8 @@ router.get('/', (req, res) => {
     title: (lang === 'en' && n.title_en) ? n.title_en : n.title,
     summary: (lang === 'en' && n.summary_en) ? n.summary_en : n.summary
   }));
-  render(req, res, 'home', { news }, res.locals.t('site.title'));
+  const polaroids = db.prepare('SELECT image_url, alt_text FROM polaroids ORDER BY sort_order, id').all();
+  render(req, res, 'home', { news, polaroids, shopCoverImage: getShopCoverImage() }, res.locals.t('site.title'));
 });
 
 router.get('/nylegt', (req, res) => {
@@ -65,7 +74,7 @@ router.get('/nylegt', (req, res) => {
     SELECT slug, title, summary, title_en, summary_en, cover_image, published_at
     FROM news
     WHERE published = 1
-    ORDER BY published_at DESC
+    ORDER BY sort_order ASC, published_at DESC
   `).all();
   const lang = req.lang;
   const news = newsRows.map(n => ({
@@ -87,7 +96,7 @@ router.get('/nylegt/:slug', (req, res, next) => {
   render(req, res, 'news-single', { item }, item.title);
 });
 
-const PAGE_SLUGS = ['markmid', 'samthykktir', 'rannsoknir', 'baekur', 'spurt-svarad', 'linkar', 'hafa-samband'];
+const PAGE_SLUGS = ['markmid', 'fyrstu-skref', 'samthykktir', 'rannsoknir', 'baekur', 'spurt-svarad', 'linkar', 'vefverslun', 'hafa-samband'];
 
 for (const slug of PAGE_SLUGS) {
   router.get('/' + slug, (req, res, next) => {

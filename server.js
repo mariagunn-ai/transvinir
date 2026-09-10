@@ -17,6 +17,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(express.json({ limit: '2mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/vendor/easymde', express.static(path.join(__dirname, 'node_modules', 'easymde', 'dist')));
 
 if (!process.env.SESSION_SECRET) {
   console.warn('VIÐVÖRUN: SESSION_SECRET vantar í .env. Notar tímabundið leyndarmál (sessions deyja við restart).');

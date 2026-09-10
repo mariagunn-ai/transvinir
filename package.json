@@ -11,6 +11,7 @@
     "bcryptjs": "^2.4.3",
     "better-sqlite3": "^12.4.0",
     "dotenv": "^16.4.5",
+    "easymde": "^2.21.0",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "express-session": "^1.18.1",

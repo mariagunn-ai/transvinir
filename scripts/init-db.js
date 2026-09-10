@@ -46,6 +46,41 @@ const seedPages = [
 *(You can edit this text in the admin area.)*`
   },
   {
+    slug: 'fyrstu-skref',
+    title: 'Fyrstu skref þegar barn eða ungmenni kemur út',
+    body_md: `Þú ert ekki ein/n. Hér er pláss fyrir aðstandendur og vini trans fólks.
+
+## Fyrstu viðbrögð
+
+- Hlustaðu af athygli og taktu á móti barninu eins og það er.
+- Notaðu það nafn og fornafn sem barnið kýs.
+- Sýndu skilning — það er í lagi að spyrja, en mundu að barnið ræður ferðinni.
+
+## Næstu skref
+
+- Leitið saman að upplýsingum og stuðningi.
+- Talaðu við aðra aðstandendur sem hafa svipaða reynslu.
+- Skoðaðu auðlindir á [Slóðir](/linkar) síðunni eða farðu á [Hafa samband](/hafa-samband) til að ná í okkur.
+
+*(Þú getur breytt þessum texta í admin svæði.)*`,
+    title_en: 'First steps when a child or young person comes out',
+    body_md_en: `You are not alone. A space for family and friends of trans people.
+
+## First reactions
+
+- Listen attentively and accept the child as they are.
+- Use the name and pronouns the child chooses.
+- Show understanding — it's okay to ask, but remember that the child leads the way.
+
+## Next steps
+
+- Look for information and support together.
+- Talk to other family members who have had similar experiences.
+- Check the [Links](/linkar) page or visit [Contact](/hafa-samband) to reach us.
+
+*(You can edit this text in the admin area.)*`
+  },
+  {
     slug: 'samthykktir',
     title: 'Samþykktir',
     body_md: `Hér birtast samþykktir Trans vina.
@@ -111,7 +146,7 @@ See the [Contact](/hafa-samband) page.`
   },
   {
     slug: 'linkar',
-    title: 'Linkar',
+    title: 'Slóðir',
     body_md: `## Gagnlegir tenglar
 
 - [Trans Ísland](https://trans.is)
@@ -127,15 +162,50 @@ See the [Contact](/hafa-samband) page.`
 *(Add more links in the admin area.)*`
   },
   {
+    slug: 'vefverslun',
+    title: 'Vefverslun',
+    body_md: `<img src="/images/skjol-hja-mer.png" alt="Þú átt skjól hjá mér næla" style="max-width: 320px; width: 100%; margin: 0 auto; display: block;" />
+
+## Næla — Þú átt skjól hjá mér
+
+Verð: **1.500 kr.**
+
+Hægt að panta beint hjá Trans vinum með því að senda tölvupóst á [transvinir@gmail.com](mailto:transvinir@gmail.com) með nafni og fjölda nælna.
+
+---
+
+## Bolir, töskur og fleira
+
+Stuðningsvörur á Redbubble-vefnum með TRANS VINIR-hönnun.
+
+[Skoða á Redbubble →](https://www.redbubble.com/shop?query=trans%20vinir)`,
+    title_en: 'Shop',
+    body_md_en: `<img src="/images/skjol-hja-mer.png" alt="You have shelter with me pin" style="max-width: 320px; width: 100%; margin: 0 auto; display: block;" />
+
+## Pin — You have shelter with me
+
+Price: **1,500 ISK**
+
+You can order directly from Trans vinir by sending an email to [transvinir@gmail.com](mailto:transvinir@gmail.com) with your name and the number of pins.
+
+---
+
+## T-shirts, bags and more
+
+Support items on Redbubble with TRANS VINIR designs.
+
+[View on Redbubble →](https://www.redbubble.com/shop?query=trans%20vinir)`
+  },
+  {
     slug: 'hafa-samband',
     title: 'Hafa samband',
-    body_md: `Þú getur sent okkur tölvupóst á **transvinir@transvinir.is**.
+    body_md: `Þú getur sent okkur tölvupóst á **transvinir@gmail.com**.
 
-*(Uppfærðu netfang og samskiptaupplýsingar í admin svæði.)*`,
+Ekki hika við að hafa samband. Við svörum eftir bestu getu, við erum hér til að styðja þig.`,
     title_en: 'Contact',
-    body_md_en: `You can email us at **transvinir@transvinir.is**.
+    body_md_en: `You can email us at **transvinir@gmail.com**.
 
-*(Update the email and contact info in the admin area.)*`
+Don't hesitate to reach out. We answer as best we can — we are here to support you.`
   }
 ];
 
@@ -192,7 +262,7 @@ const setSetting = db.prepare(`
   INSERT INTO settings (key, value) VALUES (?, ?)
   ON CONFLICT(key) DO NOTHING
 `);
-setSetting.run('contact_email', 'transvinir@transvinir.is');
+setSetting.run('contact_email', 'transvinir@gmail.com');
 setSetting.run('redbubble_url', 'https://www.redbubble.com/shop?query=trans%20vinir');
 setSetting.run('campaign_text', 'Þú átt skjól hjá mér');
 setSetting.run('campaign_text_en', 'You have shelter with me');

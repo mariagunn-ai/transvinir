@@ -38,7 +38,11 @@ function middleware(req, res, next) {
   req.lang = lang;
   res.locals.lang = lang;
   res.locals.otherLang = lang === 'is' ? 'en' : 'is';
-  res.locals.t = (key) => (locales[lang] && locales[lang][key]) || (locales[DEFAULT_LANG][key]) || key;
+  res.locals.t = (key) => {
+    if (locales[lang] && key in locales[lang]) return locales[lang][key];
+    if (key in locales[DEFAULT_LANG]) return locales[DEFAULT_LANG][key];
+    return key;
+  };
   res.locals.localized = (obj, base) => {
     if (!obj) return '';
     if (lang === 'is') return obj[base] || '';
