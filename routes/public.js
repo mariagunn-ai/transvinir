@@ -96,7 +96,7 @@ router.get('/nylegt/:slug', (req, res, next) => {
   render(req, res, 'news-single', { item }, item.title);
 });
 
-const PAGE_SLUGS = ['markmid', 'fyrstu-skref', 'samthykktir', 'rannsoknir', 'baekur', 'spurt-svarad', 'linkar', 'vefverslun', 'hafa-samband'];
+const PAGE_SLUGS = ['markmid', 'fyrstu-skref', 'samthykktir', 'rannsoknir', 'baekur', 'spurt-svarad', 'linkar', 'myndir', 'vefverslun', 'hafa-samband'];
 
 for (const slug of PAGE_SLUGS) {
   router.get('/' + slug, (req, res, next) => {

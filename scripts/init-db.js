@@ -162,6 +162,53 @@ See the [Contact](/hafa-samband) page.`
 *(Add more links in the admin area.)*`
   },
   {
+    slug: 'myndir',
+    title: 'Myndir',
+    body_md: `## Alþjóðlegur minningardagur trans fólks – 20. nóvember
+
+Sýndu stuðning og settu myndirnar á samfélagsmiðlana þína. Smelltu á „Sækja mynd“, vistaðu hana og notaðu sem prófíl- eða forsíðumynd.
+
+### Prófílmynd
+
+<img src="/images/minningardagur/profilmynd.png" alt="Hringlaga merki í trans- og regnbogalitum með textanum „Þú átt skjól hjá mér“ og merki Trans vina" style="max-width: 420px; width: 100%;" />
+
+[Sækja mynd](/images/minningardagur/profilmynd.png)
+
+### Forsíðumynd – blár texti
+
+![Merkið „Þú átt skjól hjá mér“ ásamt textanum Alþjóðlegur minningardagur trans fólks, 20. nóvember, í bláu letri](/images/minningardagur/forsidumynd-blar.jpg)
+
+[Sækja mynd](/images/minningardagur/forsidumynd-blar.jpg)
+
+### Forsíðumynd – svartur texti
+
+![Merkið „Þú átt skjól hjá mér“ ásamt textanum Alþjóðlegur minningardagur trans fólks, 20. nóvember, í svörtu letri](/images/minningardagur/forsidumynd-svartur.jpg)
+
+[Sækja mynd](/images/minningardagur/forsidumynd-svartur.jpg)`,
+    title_en: 'Images',
+    body_md_en: `## Transgender Day of Remembrance – November 20th
+
+Show your support by using these images on social media. Click "Download image", save it and use it as your profile or cover photo.
+
+### Profile picture
+
+<img src="/images/minningardagur/profilmynd.png" alt="Circular emblem in trans and rainbow colours with the text „Þú átt skjól hjá mér“ (You have shelter with me) and the Trans vinir logo" style="max-width: 420px; width: 100%;" />
+
+[Download image](/images/minningardagur/profilmynd.png)
+
+### Cover photo – blue text
+
+![The „Þú átt skjól hjá mér“ emblem with the text Transgender Day of Remembrance, November 20th, in blue (Icelandic)](/images/minningardagur/forsidumynd-blar.jpg)
+
+[Download image](/images/minningardagur/forsidumynd-blar.jpg)
+
+### Cover photo – black text
+
+![The „Þú átt skjól hjá mér“ emblem with the text Transgender Day of Remembrance, November 20th, in black (Icelandic)](/images/minningardagur/forsidumynd-svartur.jpg)
+
+[Download image](/images/minningardagur/forsidumynd-svartur.jpg)`
+  },
+  {
     slug: 'vefverslun',
     title: 'Vefverslun',
     body_md: `<img src="/images/skjol-hja-mer.png" alt="Þú átt skjól hjá mér næla" style="max-width: 320px; width: 100%; margin: 0 auto; display: block;" />
